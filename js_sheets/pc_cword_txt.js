@@ -7,8 +7,8 @@
 
    Crossword Puzzle Script
    
-   Author: 
-   Date:   
+   Author: Dana Wildy
+   Date: 10/28/2026  
    
    Global Variables
    ================
