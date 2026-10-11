@@ -49,18 +49,96 @@
 
 */
 
+// This will run the init() function when the page is loaded
+window.onload = init;
+
+// Global variable declaration
+
+var allLetters;
+var currentLetter;
+var wordLetters;
+var acrossClue;
+var downClue;
+var typeDirection = "right";
+
+function init() {
+
+   // Set allLetters to reference all elements using a selector tab
+
+   allLetters = document.querySelectorAll("table#crossword span");
+   console.log("1. Checked elements:", allLetters); // <-- Check #1: Did it find the spans?
 
 
+// set current letter to the first object in allLetters index
+
+currentLetter = allLetters[0];
+
+// Set across clue and down clue to dataset values
+acrossClue = currentLetter.dataset.clueA;
+downClue = currentLetter.dataset.clueD;
 
 
-   
+function formatPuzzle(puzzleLetter) {
+
+   // check in the case if puzzleLetter is non-existent
+/*  var puzzleLetter = null;
+
+if (!puzzleLetter) {
+    return;
+}*/
+    currentLetter = puzzleLetter;
+
+ // Loops through allLetters collection changes background to empty text
+    for (var i = 0; i < allLetters.length; i++) {
+        allLetters[i].style.backgroundColor = "";
+    }
+// Removes highlighting by changing across and down clues to empty strings
+  
+ acrossClue = currentLetter.dataset.clueA || "";
+ currentLetter.style.backgroundColor = "rgb(200, 200, 255)";
 
 
+ downClue = currentLetter.dataset.clueD || "";
+ currentLetter.style.backgroundColor = "rgb(173, 16, 16)";
 
+
+if(puzzleLetter.dataset.clueA !== undefined) {
+   acrossClue = puzzleLetter.dataset.clueA;
+} else {
+   acrossClue = "";
+}
+if(puzzleLetter.dataset.clueD !== undefined) {
+   downClueClue = puzzleLetter.dataset.clueD;
+} else {
+   downClue = "";
+ 
+}
+
+wordLetters = document.querySelectorAll(
+   'table#crossword span[data-clue-a="' + currentLetter.dataset.clueA + '"]'
+);
+
+for (var i = 0; i < wordLetters.length; i++) {
+   wordLetters[i].style.backgroundColor = "rgb(231, 231, 255)";
+}
+wordLetters = document.querySelectorAll(
+   'table#crossword span[data-clue-d="' + currentLetter.dataset.clueD + '"]'
+);
+
+for (var i = 0; i < wordLetters.length; i++) {
+   wordLetters[i].style.backgroundColor = "rgb(255, 231, 231)";
+}
+if (typingDirection === 'right') {
+   this.style.backgroundColor = rgb(191, 191, 255);
+}else {
+   this.style.backgroundColor = rgb(255, 191, 191);
+}
 
 
 /*====================================================*/
 
 function getChar(keyNum) {
    return String.fromCharCode(keyNum);
+}
+}
 }
